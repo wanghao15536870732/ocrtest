@@ -19,15 +19,15 @@ import android.widget.TextView;
 import com.baidu.ocr.sdk.OCR;
 import com.baidu.ocr.sdk.OnResultListener;
 import com.baidu.ocr.sdk.exception.OCRError;
+import com.baidu.ocr.sdk.model.GeneralBasicParams;
 import com.baidu.ocr.sdk.model.GeneralParams;
 import com.baidu.ocr.sdk.model.GeneralResult;
-import com.baidu.ocr.sdk.model.Word;
 import com.baidu.ocr.sdk.model.WordSimple;
 import com.baidu.ocr.ui.camera.CameraActivity;
 
 import java.io.File;
 
-public class GeneralActivity extends AppCompatActivity {
+public class AccurateActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_PICK_IMAGE = 101;
     private static final int REQUEST_CODE_CAMERA = 102;
@@ -36,7 +36,7 @@ public class GeneralActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_general );
+        setContentView( R.layout.activity_accurate );
         //jsjsjsjsjk的骄傲理解的
         infoTextView = (TextView) findViewById(R.id.info_text_view);
         infoTextView.setTextIsSelectable(true);
@@ -44,10 +44,10 @@ public class GeneralActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    int ret = ActivityCompat.checkSelfPermission(GeneralActivity.this, Manifest.permission
+                    int ret = ActivityCompat.checkSelfPermission(AccurateActivity.this, Manifest.permission
                             .READ_EXTERNAL_STORAGE);
                     if (ret != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(GeneralActivity.this,
+                        ActivityCompat.requestPermissions(AccurateActivity.this,
                                 new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
                                 1000);
                         return;
@@ -63,7 +63,7 @@ public class GeneralActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(GeneralActivity.this, CameraActivity.class);
+                Intent intent = new Intent(AccurateActivity.this, CameraActivity.class);
                 intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
                         FileUtil.getSaveFile(getApplication()).getAbsolutePath());
                 intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
@@ -76,18 +76,17 @@ public class GeneralActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int ret = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
             if (ret == PackageManager.PERMISSION_DENIED) {
-                ActivityCompat.requestPermissions(GeneralActivity.this,
+                ActivityCompat.requestPermissions(AccurateActivity.this,
                         new String[] {Manifest.permission.READ_PHONE_STATE},
                         100);
             }
         }
-
         //添加返回按钮
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle( "通用文字识别" );
+            actionBar.setTitle( "通用文字识别 (高精度版)" );
         }
     }
 
@@ -95,7 +94,7 @@ public class GeneralActivity extends AppCompatActivity {
         GeneralParams param = new GeneralParams();
         param.setDetectDirection(true);
         param.setImageFile(new File(filePath));
-        OCR.getInstance(this).recognizeGeneral(param, new OnResultListener<GeneralResult>() {
+        OCR.getInstance(this).recognizeAccurate(param, new OnResultListener<GeneralResult>() {
             @Override
             public void onResult(GeneralResult result) {
                 StringBuilder sb = new StringBuilder();
@@ -150,5 +149,4 @@ public class GeneralActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected( item );
     }
-
 }

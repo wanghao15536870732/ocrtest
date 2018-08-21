@@ -24,8 +24,6 @@ import com.baidu.ocr.sdk.model.WordSimple;
 
 import java.io.File;
 
-
-
 public class RecognizeService extends Service{
 
     @Nullable

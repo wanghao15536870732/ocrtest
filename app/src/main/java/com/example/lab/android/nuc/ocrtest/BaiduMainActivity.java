@@ -21,6 +21,7 @@ import com.baidu.ocr.sdk.OCR;
 import com.baidu.ocr.sdk.OnResultListener;
 import com.baidu.ocr.sdk.exception.OCRError;
 import com.baidu.ocr.sdk.model.AccessToken;
+import com.baidu.ocr.sdk.model.BankCardParams;
 import com.baidu.ocr.sdk.model.GeneralParams;
 import com.baidu.ocr.sdk.model.GeneralResult;
 import com.baidu.ocr.sdk.model.Word;
@@ -30,11 +31,6 @@ import java.io.File;
 
 public class BaiduMainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_CODE_GENERAL = 105;
-    private static final int REQUEST_CODE_GENERAL_BASIC = 106;
-    private static final int REQUEST_CODE_ACCURATE_BASIC = 107;
-    private static final int REQUEST_CODE_ACCURATE = 108;
-    private static final int REQUEST_CODE_GENERAL_ENHANCED = 109;
     private static final int REQUEST_CODE_GENERAL_WEBIMAGE = 110;
     private static final int REQUEST_CODE_BANKCARD = 111;
     private static final int REQUEST_CODE_VEHICLE_LICENSE = 120;
@@ -64,7 +60,7 @@ public class BaiduMainActivity extends AppCompatActivity {
 
         alertDialog = new AlertDialog.Builder(this);
 
-        //简单文字识别
+        // 通用文字识别
         findViewById( R.id.generally_button ).setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,21 +69,7 @@ public class BaiduMainActivity extends AppCompatActivity {
             }
         } );
 
-        // 通用文字识别
-        findViewById(R.id.general_basic_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!checkTokenStatus()) {
-                    return;
-                }
-                Intent intent = new Intent(BaiduMainActivity.this, CameraActivity.class);
-                intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
-                        FileUtil.getSaveFile(getApplication()).getAbsolutePath());
-                intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
-                        CameraActivity.CONTENT_TYPE_GENERAL);
-                startActivityForResult(intent, REQUEST_CODE_GENERAL_BASIC);
-            }
-        });
+
 
         // 通用文字识别(高精度版)
         findViewById(R.id.accurate_basic_button).setOnClickListener(new View.OnClickListener() {
@@ -96,46 +78,12 @@ public class BaiduMainActivity extends AppCompatActivity {
                 if (!checkTokenStatus()) {
                     return;
                 }
-                Intent intent = new Intent(BaiduMainActivity.this, CameraActivity.class);
-                intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
-                        FileUtil.getSaveFile(getApplication()).getAbsolutePath());
-                intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
-                        CameraActivity.CONTENT_TYPE_GENERAL);
-                startActivityForResult(intent, REQUEST_CODE_ACCURATE_BASIC);
+                Intent intent = new Intent(BaiduMainActivity.this, AccurateActivity.class);
+                startActivity( intent );
+
             }
         });
 
-        // 通用文字识别（含位置信息版）
-        findViewById(R.id.general_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!checkTokenStatus()) {
-                    return;
-                }
-                Intent intent = new Intent(BaiduMainActivity.this, CameraActivity.class);
-                intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
-                        FileUtil.getSaveFile(getApplication()).getAbsolutePath());
-                intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
-                        CameraActivity.CONTENT_TYPE_GENERAL);
-                startActivityForResult(intent, REQUEST_CODE_GENERAL);
-            }
-        });
-
-        // 通用文字识别（含位置信息高精度版）
-        findViewById(R.id.accurate_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!checkTokenStatus()) {
-                    return;
-                }
-                Intent intent = new Intent(BaiduMainActivity.this, CameraActivity.class);
-                intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
-                        FileUtil.getSaveFile(getApplication()).getAbsolutePath());
-                intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
-                        CameraActivity.CONTENT_TYPE_GENERAL);
-                startActivityForResult(intent, REQUEST_CODE_ACCURATE);
-            }
-        });
 
         // 通用文字识别（含生僻字版）
         findViewById(R.id.general_enhance_button).setOnClickListener(new View.OnClickListener() {
@@ -144,12 +92,8 @@ public class BaiduMainActivity extends AppCompatActivity {
                 if (!checkTokenStatus()) {
                     return;
                 }
-                Intent intent = new Intent(BaiduMainActivity.this, CameraActivity.class);
-                intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
-                        FileUtil.getSaveFile(getApplication()).getAbsolutePath());
-                intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
-                        CameraActivity.CONTENT_TYPE_GENERAL);
-                startActivityForResult(intent, REQUEST_CODE_GENERAL_ENHANCED);
+                Intent intent = new Intent(BaiduMainActivity.this, EnhanceActivity.class);
+                startActivity( intent );
             }
         });
 
@@ -188,12 +132,8 @@ public class BaiduMainActivity extends AppCompatActivity {
                 if (!checkTokenStatus()) {
                     return;
                 }
-                Intent intent = new Intent(BaiduMainActivity.this, CameraActivity.class);
-                intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
-                        FileUtil.getSaveFile(getApplication()).getAbsolutePath());
-                intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
-                        CameraActivity.CONTENT_TYPE_BANK_CARD);
-                startActivityForResult(intent, REQUEST_CODE_BANKCARD);
+                Intent intent = new Intent(BaiduMainActivity.this, BankCardActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -490,6 +430,7 @@ public class BaiduMainActivity extends AppCompatActivity {
 
     private void infoPopText(final String result) {
         alertText("", result);
+
     }
 
     @Override
@@ -507,60 +448,7 @@ public class BaiduMainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // 识别成功回调，通用文字识别（含位置信息）
-        if (requestCode == REQUEST_CODE_GENERAL && resultCode == Activity.RESULT_OK) {
-            RecognizeService.recGeneral(this, FileUtil.getSaveFile(getApplicationContext()).getAbsolutePath(),
-                    new RecognizeService.ServiceListener() {
-                        @Override
-                        public void onResult(String result) {
-                            infoPopText(result);
-                        }
-                    });
-        }
 
-        // 识别成功回调，通用文字识别（含位置信息高精度版）
-        if (requestCode == REQUEST_CODE_ACCURATE && resultCode == Activity.RESULT_OK) {
-            RecognizeService.recAccurate(this, FileUtil.getSaveFile(getApplicationContext()).getAbsolutePath(),
-                    new RecognizeService.ServiceListener() {
-                        @Override
-                        public void onResult(String result) {
-                            infoPopText(result);
-                        }
-                    });
-        }
-
-        // 识别成功回调，通用文字识别
-        if (requestCode == REQUEST_CODE_GENERAL_BASIC && resultCode == Activity.RESULT_OK) {
-            RecognizeService.recGeneralBasic(this, FileUtil.getSaveFile(getApplicationContext()).getAbsolutePath(),
-                    new RecognizeService.ServiceListener() {
-                        @Override
-                        public void onResult(String result) {
-                            infoPopText(result);
-                        }
-                    });
-        }
-
-        // 识别成功回调，通用文字识别（高精度版）
-        if (requestCode == REQUEST_CODE_ACCURATE_BASIC && resultCode == Activity.RESULT_OK) {
-            RecognizeService.recAccurateBasic(this, FileUtil.getSaveFile(getApplicationContext()).getAbsolutePath(),
-                    new RecognizeService.ServiceListener() {
-                        @Override
-                        public void onResult(String result) {
-                            infoPopText(result);
-                        }
-                    });
-        }
-
-        // 识别成功回调，通用文字识别（含生僻字版）
-        if (requestCode == REQUEST_CODE_GENERAL_ENHANCED && resultCode == Activity.RESULT_OK) {
-            RecognizeService.recGeneralEnhanced(this, FileUtil.getSaveFile(getApplicationContext()).getAbsolutePath(),
-                    new RecognizeService.ServiceListener() {
-                        @Override
-                        public void onResult(String result) {
-                            infoPopText(result);
-                        }
-                    });
-        }
 
         // 识别成功回调，网络图片文字识别
         if (requestCode == REQUEST_CODE_GENERAL_WEBIMAGE && resultCode == Activity.RESULT_OK) {
@@ -735,4 +623,25 @@ public class BaiduMainActivity extends AppCompatActivity {
         OCR.getInstance(this).release();
     }
 
+
+    private void recGeneral(String filePath) {
+        GeneralParams param = new GeneralParams();
+        param.setDetectDirection(true);
+        param.setImageFile(new File(filePath));
+        OCR.getInstance(this).recognizeGeneral(param, new OnResultListener<GeneralResult>() {
+            @Override
+            public void onResult(GeneralResult result) {
+                StringBuilder sb = new StringBuilder();
+                for (WordSimple word : result.getWordList()) {
+                    sb.append(word.getWords());
+                    sb.append("\n");
+                }
+
+            }
+
+            @Override
+            public void onError(OCRError error) {
+            }
+        });
+    }
 }

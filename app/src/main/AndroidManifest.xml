@@ -8,7 +8,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ocr_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -22,8 +22,15 @@
         </activity>
         <activity
             android:name=".IDCardActivity"
-            android:label="@string/idCardLabel"></activity>
-        <activity android:name=".GeneralActivity"></activity>
+            android:label="@string/idCardLabel" />
+        <activity
+            android:name=".GeneralActivity" />
+        <activity
+            android:name=".AccurateActivity" />
+        <activity
+            android:name=".EnhanceActivity" />
+        <activity
+            android:name=".BankCardActivity"/>
     </application>
 
 </manifest>

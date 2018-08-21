@@ -25,63 +25,69 @@
         android:baselineAligned="false">
 
         <Button
-            android:text="简单文字识别"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/generally_button"
-            tools:ignore="HardcodedText"/>
-
-        <Button
             android:text="通用文字识别"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/general_basic_button"
-            tools:ignore="HardcodedText"/>
+            android:id="@+id/generally_button"
+            tools:ignore="HardcodedText"
+            android:textSize="18sp"
+            android:layout_margin="8dp"
+            android:textColor="@color/text_milk"
+            android:background="@drawable/selector_btn"/>
+
 
         <Button
             android:text="通用文字识别(高精度版)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/accurate_basic_button"
-            tools:ignore="HardcodedText"/>
+            tools:ignore="HardcodedText"
+            android:textSize="18sp"
+            android:layout_margin="8dp"
+            android:textColor="@color/text_milk"
+            android:background="@drawable/selector_btn"/>
 
-        <Button
-            android:text="通用文字识别（含位置信息版）"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/general_button"
-            tools:ignore="HardcodedText"/>
-        <Button
-            android:text="通用文字识别(高精度含位置信息版)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/accurate_button"
-            tools:ignore="HardcodedText"/>
 
         <Button
             android:text="通用文字识别（含生僻字版）"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/general_enhance_button"
-            tools:ignore="HardcodedText"/>
+            tools:ignore="HardcodedText"
+            android:layout_margin="8dp"
+            android:textSize="18sp"
+            android:textColor="@color/text_milk"
+            android:background="@drawable/selector_btn"/>
+
+        <Button
+            android:text="身份证识别"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/idcard_button"
+            tools:ignore="HardcodedText"
+            android:textSize="18sp"
+            android:layout_margin="8dp"
+            android:textColor="@color/text_milk"
+            android:background="@drawable/selector_btn"/>
+
+        <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bankcard_button"
+            android:text="银行卡识别"
+            tools:ignore="HardcodedText"
+            android:textSize="18sp"
+            android:layout_margin="8dp"
+            android:textColor="@color/text_milk"
+            android:background="@drawable/selector_btn"/>
+
         <Button
             android:text="网络图片文字识别"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/general_webimage_button"
             tools:ignore="HardcodedText"/>
-        <Button
-            android:text="身份证识别"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/idcard_button"
-            tools:ignore="HardcodedText"/>
 
-        <Button android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/bankcard_button"
-            android:text="银行卡识别"
-            tools:ignore="HardcodedText"/>
+
 
         <Button android:layout_width="match_parent"
             android:layout_height="wrap_content"

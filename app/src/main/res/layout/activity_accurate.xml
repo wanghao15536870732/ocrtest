@@ -17,7 +17,6 @@
         android:id="@+id/gallery_button"
         android:visibility="gone"
         tools:ignore="HardcodedText"
-        android:textSize="18sp"
         android:textColor="@color/text_milk"
         android:background="@drawable/selector_btn"/>
 
@@ -27,20 +26,21 @@
         android:layout_height="wrap_content"
         android:id="@+id/camera_button"
         tools:ignore="HardcodedText"
-        android:textColor="@color/text_milk"
         android:textSize="18sp"
+        android:textColor="@color/text_milk"
         android:background="@drawable/selector_btn"/>
 
     <TextView
         android:id="@+id/info_text_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/rounded_rectangle"
         android:padding="10dp"
         android:layout_marginTop="10dp"
         android:scrollbars="vertical"
         android:singleLine="false"
         android:textIsSelectable="true"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
+
 
 </LinearLayout>

@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (C) 2017 Baidu, Inc. All Rights Reserved.
-  -->
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -16,52 +13,80 @@
         tools:context=".IDCardActivity">
 
     <Button
-            android:text="相册选择 正面"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/gallery_button_front"
-            android:visibility="gone"
-            tools:ignore="HardcodedText"/>
+        android:text="相册选择 正面"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gallery_button_front"
+        android:visibility="gone"
+        tools:ignore="HardcodedText"
+        android:textSize="18sp"
+        android:layout_margin="8dp"
+        android:textColor="@color/text_milk"
+        android:background="@drawable/selector_btn"/>
 
     <Button
-            android:text="相册选择 反面"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/gallery_button_back"
-            android:visibility="gone"
-            tools:ignore="HardcodedText"/>
+        android:text="相册选择 反面"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gallery_button_back"
+        android:visibility="gone"
+        tools:ignore="HardcodedText"/>
 
     <Button
-            android:text="身份证正面"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/id_card_front_button"
-            tools:ignore="HardcodedText"/>
+        android:text="身份证正面"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/id_card_front_button"
+        tools:ignore="HardcodedText"
+        android:textSize="18sp"
+        android:layout_margin="8dp"
+        android:textColor="@color/text_milk"
+        android:background="@drawable/selector_btn"
+        />
 
     <Button
-        android:text="身份证正面(本地质量控制)"
+        android:text="身份证正面(自动识别)"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/id_card_front_button_native"
-        tools:ignore="HardcodedText"/>
+        tools:ignore="HardcodedText"
+        android:textSize="18sp"
+        android:layout_margin="8dp"
+        android:textColor="@color/text_milk"
+        android:background="@drawable/selector_btn"/>
 
     <Button
-            android:text="身份证反面"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/id_card_back_button"
-            tools:ignore="HardcodedText"/>
+        android:text="身份证反面"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/id_card_back_button"
+        tools:ignore="HardcodedText"
+        android:textSize="18sp"
+        android:layout_margin="8dp"
+        android:textColor="@color/text_milk"
+        android:background="@drawable/selector_btn"/>
 
     <Button
-        android:text="身份证反面(本地质量控制)"
+        android:text="身份证反面(自动识别)"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/id_card_back_button_native"
-        tools:ignore="HardcodedText"/>
+        tools:ignore="HardcodedText"
+        android:textSize="18sp"
+        android:layout_margin="8dp"
+        android:textColor="@color/text_milk"
+        android:background="@drawable/selector_btn"/>
 
     <TextView
-            android:id="@+id/info_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        android:id="@+id/info_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_rectangle"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:scrollbars="vertical"
+        android:singleLine="false"
+        android:textIsSelectable="true"
+        android:textSize="16sp"/>
 
 </LinearLayout>
