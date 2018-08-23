@@ -47,6 +47,15 @@
             android:textColor="@color/text_milk"
             android:background="@drawable/selector_btn"/>
 
+        <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/handwritting_button"
+            android:text="手写识别"
+            tools:ignore="HardcodedText"
+            android:textSize="18sp"
+            android:layout_margin="8dp"
+            android:textColor="@color/text_milk"
+            android:background="@drawable/selector_btn"/>
 
         <Button
             android:text="通用文字识别（含生僻字版）"
@@ -85,7 +94,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/general_webimage_button"
-            tools:ignore="HardcodedText"/>
+            tools:ignore="HardcodedText"
+            android:visibility="gone"/>
 
 
 
@@ -93,30 +103,35 @@
             android:layout_height="wrap_content"
             android:id="@+id/driving_license_button"
             android:text="驾驶证识别"
+            android:visibility="gone"
             tools:ignore="HardcodedText"/>
 
         <Button android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/vehicle_license_button"
             android:text="行驶证识别"
+            android:visibility="gone"
             tools:ignore="HardcodedText"/>
 
         <Button android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/license_plate_button"
             android:text="车牌识别"
+            android:visibility="gone"
             tools:ignore="HardcodedText"/>
 
         <Button android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/business_license_button"
             android:text="营业执照识别"
+            android:visibility="gone"
             tools:ignore="HardcodedText"/>
 
         <Button android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/receipt_button"
             android:text="通用票据识别"
+            android:visibility="gone"
             tools:ignore="HardcodedText"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -142,11 +157,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/business_card_button"
                 android:text="名片识别"
-                tools:ignore="HardcodedText"/>
-            <Button android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/handwritting_button"
-                android:text="手写识别"
                 tools:ignore="HardcodedText"/>
             <Button android:layout_width="match_parent"
                 android:layout_height="wrap_content"

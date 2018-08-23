@@ -23,14 +23,13 @@
         <activity
             android:name=".IDCardActivity"
             android:label="@string/idCardLabel" />
-        <activity
-            android:name=".GeneralActivity" />
-        <activity
-            android:name=".AccurateActivity" />
-        <activity
-            android:name=".EnhanceActivity" />
-        <activity
-            android:name=".BankCardActivity"/>
+        <activity android:name=".GeneralActivity" />
+        <activity android:name=".AccurateActivity" />
+        <activity android:name=".EnhanceActivity" />
+        <activity android:name=".BankCardActivity" />
+        <activity android:name=".HandWritingActivity" />
+        <activity android:name=".ImageBrowsweActivity"
+            android:theme="@style/imageBrowser"/>
     </application>
 
 </manifest>

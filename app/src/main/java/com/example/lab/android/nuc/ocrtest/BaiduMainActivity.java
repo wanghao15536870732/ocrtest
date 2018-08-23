@@ -43,7 +43,6 @@ public class BaiduMainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_NUMBERS = 126;
     private static final int REQUEST_CODE_QRCODE = 127;
     private static final int REQUEST_CODE_BUSINESSCARD = 128;
-    private static final int REQUEST_CODE_HANDWRITING = 129;
     private static final int REQUEST_CODE_LOTTERY = 130;
     private static final int REQUEST_CODE_VATINVOICE = 131;
     private static final int REQUEST_CODE_CUSTOM = 132;
@@ -81,6 +80,18 @@ public class BaiduMainActivity extends AppCompatActivity {
                 Intent intent = new Intent(BaiduMainActivity.this, AccurateActivity.class);
                 startActivity( intent );
 
+            }
+        });
+
+        // 手写识别
+        findViewById(R.id.handwritting_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!checkTokenStatus()) {
+                    return;
+                }
+                Intent intent = new Intent(BaiduMainActivity.this, HandWritingActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -313,21 +324,7 @@ public class BaiduMainActivity extends AppCompatActivity {
             }
         });
 
-        // 手写识别
-        findViewById(R.id.handwritting_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!checkTokenStatus()) {
-                    return;
-                }
-                Intent intent = new Intent(BaiduMainActivity.this, CameraActivity.class);
-                intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
-                        FileUtil.getSaveFile(getApplication()).getAbsolutePath());
-                intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
-                        CameraActivity.CONTENT_TYPE_GENERAL);
-                startActivityForResult(intent, REQUEST_CODE_HANDWRITING);
-            }
-        });
+
 
         // 自定义模板
         findViewById(R.id.custom_button).setOnClickListener(new View.OnClickListener() {
@@ -582,16 +579,6 @@ public class BaiduMainActivity extends AppCompatActivity {
                     });
         }
 
-        // 识别成功回调，手写
-        if (requestCode == REQUEST_CODE_HANDWRITING && resultCode == Activity.RESULT_OK) {
-            RecognizeService.recHandwriting(this, FileUtil.getSaveFile(getApplicationContext()).getAbsolutePath(),
-                    new RecognizeService.ServiceListener() {
-                        @Override
-                        public void onResult(String result) {
-                            infoPopText(result);
-                        }
-                    });
-        }
 
         // 识别成功回调，名片
         if (requestCode == REQUEST_CODE_BUSINESSCARD && resultCode == Activity.RESULT_OK) {

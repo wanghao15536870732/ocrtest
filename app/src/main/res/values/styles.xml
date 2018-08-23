@@ -18,5 +18,8 @@
 
     <style name="ocr_theme" parent="Theme.AppCompat.Light.DarkActionBar">
     </style>
+    <style name="imageBrowser" parent="Theme.AppCompat.Light.NoActionBar">
+
+    </style>
 
 </resources>

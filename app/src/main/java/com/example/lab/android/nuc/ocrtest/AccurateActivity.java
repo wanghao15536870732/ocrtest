@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -14,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.baidu.ocr.sdk.OCR;
@@ -26,13 +29,15 @@ import com.baidu.ocr.sdk.model.WordSimple;
 import com.baidu.ocr.ui.camera.CameraActivity;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 public class AccurateActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_PICK_IMAGE = 101;
     private static final int REQUEST_CODE_CAMERA = 102;
     private TextView infoTextView;
-
+    private ImageView imageView;
+    private String filePath;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -40,6 +45,7 @@ public class AccurateActivity extends AppCompatActivity {
         //jsjsjsjsjk的骄傲理解的
         infoTextView = (TextView) findViewById(R.id.info_text_view);
         infoTextView.setTextIsSelectable(true);
+        imageView = (ImageView) findViewById( R.id.image_view );
         findViewById(R.id.gallery_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +64,14 @@ public class AccurateActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE);
             }
         });
+        imageView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( AccurateActivity.this,ImageBrowsweActivity.class );
+                intent.putExtra( "file_path",filePath );
+                startActivity( intent );
+            }
+        } );
 
         findViewById(R.id.camera_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,12 +131,28 @@ public class AccurateActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_PICK_IMAGE && resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
-            String filePath = getRealPathFromURI(uri);
+            if (imageView.getVisibility() == View.GONE) {
+                imageView.setVisibility( View.VISIBLE );
+            }
+            filePath = getRealPathFromURI(uri);
+            try {
+                Bitmap bitmap = BitmapFactory.decodeStream( getContentResolver().openInputStream(uri) );
+                imageView.setImageBitmap( bitmap );
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             recGeneral(filePath);
         }
 
         if (requestCode == REQUEST_CODE_CAMERA && resultCode == Activity.RESULT_OK) {
-            recGeneral(FileUtil.getSaveFile(getApplicationContext()).getAbsolutePath());
+            filePath = FileUtil.getSaveFile(getApplicationContext()).getAbsolutePath();
+            if (imageView.getVisibility() == View.GONE) {
+                imageView.setVisibility( View.VISIBLE );
+            }
+            Bitmap bitmap = BitmapFactory.decodeFile( filePath );
+            imageView.setImageBitmap( bitmap );
+            recGeneral(filePath);
+
         }
     }
 

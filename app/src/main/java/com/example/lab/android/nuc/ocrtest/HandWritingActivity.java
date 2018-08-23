@@ -5,9 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.gesture.GestureLibraries;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -17,44 +14,42 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.baidu.ocr.sdk.OCR;
 import com.baidu.ocr.sdk.OnResultListener;
 import com.baidu.ocr.sdk.exception.OCRError;
 import com.baidu.ocr.sdk.model.GeneralParams;
 import com.baidu.ocr.sdk.model.GeneralResult;
-import com.baidu.ocr.sdk.model.Word;
+import com.baidu.ocr.sdk.model.OcrRequestParams;
+import com.baidu.ocr.sdk.model.OcrResponseResult;
 import com.baidu.ocr.sdk.model.WordSimple;
 import com.baidu.ocr.ui.camera.CameraActivity;
-import com.bumptech.glide.Glide;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 
-public class GeneralActivity extends AppCompatActivity {
+public class HandWritingActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_PICK_IMAGE = 101;
     private static final int REQUEST_CODE_CAMERA = 102;
     private TextView infoTextView;
-    private ImageView imageView;
-    private String filePath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_general );
+        setContentView( R.layout.activity_hand_writing );
+        //jsjsjsjsjk的骄傲理解的
         infoTextView = (TextView) findViewById(R.id.info_text_view);
         infoTextView.setTextIsSelectable(true);
-        imageView = (ImageView) findViewById( R.id.image_view );
         findViewById(R.id.gallery_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    int ret = ActivityCompat.checkSelfPermission(GeneralActivity.this, Manifest.permission
+                    int ret = ActivityCompat.checkSelfPermission(HandWritingActivity.this, Manifest.permission
                             .READ_EXTERNAL_STORAGE);
                     if (ret != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(GeneralActivity.this,
+                        ActivityCompat.requestPermissions(HandWritingActivity.this,
                                 new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
                                 1000);
                         return;
@@ -65,20 +60,12 @@ public class GeneralActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE);
             }
         });
-        imageView.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent( GeneralActivity.this,ImageBrowsweActivity.class );
-                intent.putExtra( "file_path",filePath );
-                startActivity( intent );
-            }
-        } );
 
         findViewById(R.id.camera_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(GeneralActivity.this, CameraActivity.class);
+                Intent intent = new Intent(HandWritingActivity.this, CameraActivity.class);
                 intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
                         FileUtil.getSaveFile(getApplication()).getAbsolutePath());
                 intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
@@ -91,7 +78,7 @@ public class GeneralActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int ret = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
             if (ret == PackageManager.PERMISSION_DENIED) {
-                ActivityCompat.requestPermissions(GeneralActivity.this,
+                ActivityCompat.requestPermissions(HandWritingActivity.this,
                         new String[] {Manifest.permission.READ_PHONE_STATE},
                         100);
             }
@@ -102,28 +89,26 @@ public class GeneralActivity extends AppCompatActivity {
         if (actionBar != null) {
             // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle( "通用文字识别" );
+            actionBar.setTitle( "手写识别" );
         }
     }
 
     private void recGeneral(String filePath) {
-        GeneralParams param = new GeneralParams();
-        param.setDetectDirection(true);
+        OcrRequestParams param = new OcrRequestParams();
         param.setImageFile(new File(filePath));
-        OCR.getInstance(this).recognizeGeneral(param, new OnResultListener<GeneralResult>() {
+        OCR.getInstance(this).recognizeHandwriting(param, new OnResultListener<OcrResponseResult>() {
+
             @Override
-            public void onResult(GeneralResult result) {
-                StringBuilder sb = new StringBuilder();
-                for (WordSimple word : result.getWordList()) {
-                    sb.append(word.getWords());
-                    sb.append("\n");
-                }
-                infoTextView.setText(sb);
+            public void onResult(OcrResponseResult result) {
+                StringBuilder sb = new StringBuilder(  );
+               sb.append(result.getJsonRes().toString());
+               sb.append("\n");
+               infoTextView.setText( sb );
             }
 
             @Override
-            public void onError(OCRError error) {
-                infoTextView.setText(error.getMessage());
+            public void onError(OCRError ocrError) {
+                infoTextView.setText(ocrError.getMessage());
             }
         });
     }
@@ -133,28 +118,12 @@ public class GeneralActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_PICK_IMAGE && resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
-            if (imageView.getVisibility() == View.GONE) {
-                imageView.setVisibility( View.VISIBLE );
-            }
-            filePath = getRealPathFromURI(uri);
-            try {
-                Bitmap bitmap = BitmapFactory.decodeStream( getContentResolver().openInputStream(  uri) );
-                imageView.setImageBitmap( bitmap );
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+            String filePath = getRealPathFromURI(uri);
             recGeneral(filePath);
         }
 
         if (requestCode == REQUEST_CODE_CAMERA && resultCode == Activity.RESULT_OK) {
-            filePath = FileUtil.getSaveFile(getApplicationContext()).getAbsolutePath();
-            if (imageView.getVisibility() == View.GONE) {
-                imageView.setVisibility( View.VISIBLE );
-            }
-            Bitmap bitmap = BitmapFactory.decodeFile( filePath );
-            imageView.setImageBitmap( bitmap );
-            recGeneral(filePath);
-
+            recGeneral(FileUtil.getSaveFile(getApplicationContext()).getAbsolutePath());
         }
     }
 
