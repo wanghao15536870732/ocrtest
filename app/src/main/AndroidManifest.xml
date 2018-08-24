@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BaiduMainActivity">
+        <activity android:name=".activity.BaiduMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,14 +21,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".IDCardActivity"
+            android:name=".activity.IDCardActivity"
             android:label="@string/idCardLabel" />
-        <activity android:name=".GeneralActivity" />
-        <activity android:name=".AccurateActivity" />
-        <activity android:name=".EnhanceActivity" />
-        <activity android:name=".BankCardActivity" />
-        <activity android:name=".HandWritingActivity" />
-        <activity android:name=".ImageBrowsweActivity"
+        <activity android:name=".activity.GeneralActivity" />
+        <activity android:name=".activity.AccurateActivity" />
+        <activity android:name=".activity.EnhanceActivity" />
+        <activity android:name=".activity.BankCardActivity" />
+        <activity android:name=".activity.HandWritingActivity" />
+        <activity android:name=".activity.ImageBrowsweActivity"
             android:theme="@style/imageBrowser"/>
     </application>
 
