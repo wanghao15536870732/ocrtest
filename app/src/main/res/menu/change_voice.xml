@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/xiaoyan"
+        android:title="小燕 女声 青年 中英文(默认)" />
+    <item
+        android:id="@+id/xiaoyu"
+        android:title="小宇 男声 青年 中英文"/>
+    <item
+        android:id="@+id/henry"
+        android:title="亨利 男声 青年 英文"/>
+    <item
+        android:id="@+id/vimary"
+        android:title="玛丽 女声 青年 英文"/>
+    <item
+        android:id="@+id/xiaomei"
+        android:title="小梅 女声 青年 中英文 粤语" />
+    <item
+        android:id="@+id/vixl"
+        android:title="小莉 女声 青年 中英文 台湾普通话"/>
+    <item
+        android:id="@+id/xiaorong"
+        android:title="小蓉 女声 青年 汉语 四川话"/>
+    <item
+        android:id="@+id/xiaokun"
+        android:title="小坤 男声 青年 汉语 河南话"/>
+    <item
+        android:id="@+id/xiaoqiang"
+        android:title="小强 男声 青年 汉语 湖南话"/>
+    <item
+        android:id="@+id/vixying"
+        android:title="小莹 女声 青年 汉语 陕西话"/>
+    <item
+        android:id="@+id/xiaoxin"
+        android:title="小新 男声 童年 汉语 普通话"/>
+    <item
+        android:id="@+id/nannan"
+        android:title="楠楠 女声 童年 汉语 普通话"/>
+    <item
+        android:id="@+id/vils"
+        android:title="老孙 男声 老年 汉语普通话"/>
+    <item
+        android:id="@+id/cancel_chose"
+        android:title="取消"/>
+</menu>

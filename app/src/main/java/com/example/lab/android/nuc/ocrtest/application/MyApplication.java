@@ -13,12 +13,12 @@ import com.iflytek.cloud.SpeechUtility;
  * 修改备注：
  */
 
-public class MyApplication_1 extends Application {
+public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        SpeechUtility.createUtility(this, SpeechConstant.APPID + "=5ad97691");
-        RecognitionManager.getSingleton().init(this,"5ad97691");
-        SynthesisManager.getSingleton().init(this,"5ad97691");
+        SpeechUtility.createUtility(this, SpeechConstant.APPID + "=5b5ec33a");
+        RecognitionManager.getSingleton().init(this,"5b5ec33a");
+        SynthesisManager.getSingleton().init(this,"5b5ec33a");
     }
 }

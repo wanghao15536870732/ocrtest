@@ -7,7 +7,7 @@
     android:scrollbars="vertical"
     android:fadingEdge="vertical"
     style="@style/result_pop_scroll"
-    >
+    android:background="@mipmap/main_back">
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"

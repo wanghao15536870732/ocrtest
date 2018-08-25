@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:fab="http://schemas.android.com/apk/res-auto">
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:background="@mipmap/general_back">
 
     <LinearLayout
         android:id="@+id/activity_idcard"
@@ -44,6 +45,7 @@
             android:scaleType="centerInside"
             android:background="@drawable/rounded_rectangle"
             android:visibility="gone"/>
+
         <TextView
             android:id="@+id/info_text_view"
             android:layout_width="match_parent"
@@ -75,6 +77,33 @@
 
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/huxue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_addButtonColorNormal="@color/fab_color"
+            fab:fab_addButtonColorPressed="@color/blue_normal"
+            fab:fab_addButtonSize="mini"
+            fab:fab_colorNormal="#f08fb0"
+            fab:fab_colorPressed="#ef739d"
+            fab:fab_size="mini"
+            android:src="@drawable/ic_star"
+            fab:fab_title="等你来添加"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/change_voice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_addButtonColorNormal="@color/fab_color"
+            fab:fab_addButtonColorPressed="@color/blue_normal"
+            fab:fab_addButtonSize="mini"
+            fab:fab_colorNormal="#f08fb0"
+            fab:fab_colorPressed="#ef739d"
+            fab:fab_size="mini"
+            android:src="@drawable/ic_change"
+            fab:fab_title="声音切换"/>
+
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/action_text_to_voice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,7 +113,7 @@
             fab:fab_colorNormal="@color/fab_color"
             fab:fab_colorPressed="@color/blue_normal"
             fab:fab_size="mini"
-            fab:fab_title="文字播放" />
+            fab:fab_title="文字播报" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/action_voice_to_text"
@@ -96,6 +125,7 @@
             fab:fab_colorNormal="@color/fab_color"
             fab:fab_colorPressed="@color/blue_normal"
             fab:fab_size="mini"
+            android:src="@drawable/ic_voice"
             fab:fab_title="语音录入" />
 
 
