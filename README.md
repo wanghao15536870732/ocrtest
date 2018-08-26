@@ -23,14 +23,14 @@
 ## Third party libraries used(使用的第三方库)
 |文字识别数据解析|图片加载|悬浮弹框按钮|底部悬浮框|
 |:--:|:--:|:--:|:--:|
-| [fastjson](https://github.com/alibaba/fastjson)|[Glide](https://github.com/bumptech/glide)|[FloatingActionButton](https://github.com/Clans/FloatingActionButton)|[BottomSheet](https://github.com/soarcn/BottomSheet)|
+| [Fastjson](https://github.com/alibaba/fastjson)|[Glide](https://github.com/bumptech/glide)|[FloatingActionButton](https://github.com/Clans/FloatingActionButton)|[BottomSheet](https://github.com/soarcn/BottomSheet)|
 
 ### The dependencies added by this project(添加的依赖)
 
 </div>
 
 ```java
- implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
