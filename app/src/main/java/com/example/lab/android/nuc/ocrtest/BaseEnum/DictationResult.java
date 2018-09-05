@@ -3,9 +3,7 @@ package com.example.lab.android.nuc.ocrtest.BaseEnum;
 import java.util.List;
 
 /**
- * 功能:
- * 修改时间：
- * 修改备注：
+ * 功能:解析识别的回调结果
  */
 
 public class DictationResult {

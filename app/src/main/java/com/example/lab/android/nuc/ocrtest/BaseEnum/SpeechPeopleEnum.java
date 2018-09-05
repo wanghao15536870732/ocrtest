@@ -2,8 +2,6 @@ package com.example.lab.android.nuc.ocrtest.BaseEnum;
 
 /**
  * 功能:定义发音人
- * 修改时间：
- * 修改备注：
  */
 
 public enum SpeechPeopleEnum {

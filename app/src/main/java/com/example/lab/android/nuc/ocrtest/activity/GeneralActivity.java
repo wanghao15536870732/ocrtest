@@ -35,7 +35,6 @@ import com.baidu.ocr.sdk.model.WordSimple;
 import com.baidu.ocr.ui.camera.CameraActivity;
 import com.cocosw.bottomsheet.BottomSheet;
 import com.example.lab.android.nuc.ocrtest.BaseEnum.DictationResult;
-import com.example.lab.android.nuc.ocrtest.imageview.RotationalTriangleImageView;
 import com.example.lab.android.nuc.ocrtest.util.FileUtil;
 import com.example.lab.android.nuc.ocrtest.R;
 import com.example.lab.android.nuc.ocrtest.util.RecognitionManager;
@@ -67,7 +66,6 @@ public class GeneralActivity extends AppCompatActivity {
     private TextView infoTextView;
     private ImageView imageView;
     private String filePath;
-    private RotationalTriangleImageView mImageView;
     private StringBuilder sb = new StringBuilder(  );
 
     private Button btnRecognizerDialog; //带窗口的语音识别
@@ -92,15 +90,6 @@ public class GeneralActivity extends AppCompatActivity {
         infoTextView.setMovementMethod( ScrollingMovementMethod.getInstance());
 //        infoTextView.setMovementMethod( ScrollingMovementMethod.getInstance());
         imageView = (ImageView) findViewById( R.id.image_view );
-//        mImageView = (RotationalTriangleImageView) findViewById( R.id.iv );
-//        mImageView.setOnClickListener( new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (mImageView.getParameter() == 0) {
-//                    mImageView.start();
-//                }
-//            }
-//        } );
 
         findViewById(R.id.gallery_button).setOnClickListener(new View.OnClickListener() {
             @Override

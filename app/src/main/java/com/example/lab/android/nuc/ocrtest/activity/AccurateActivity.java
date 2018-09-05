@@ -18,7 +18,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,7 +35,6 @@ import com.baidu.ocr.sdk.model.WordSimple;
 import com.baidu.ocr.ui.camera.CameraActivity;
 import com.cocosw.bottomsheet.BottomSheet;
 import com.example.lab.android.nuc.ocrtest.BaseEnum.DictationResult;
-import com.example.lab.android.nuc.ocrtest.imageview.RotationalTriangleImageView;
 import com.example.lab.android.nuc.ocrtest.util.FileUtil;
 import com.example.lab.android.nuc.ocrtest.R;
 import com.example.lab.android.nuc.ocrtest.util.RecognitionManager;
@@ -69,7 +67,6 @@ public class AccurateActivity extends AppCompatActivity {
     private TextView infoTextView;
     private ImageView imageView;
     private String filePath;
-    private RotationalTriangleImageView mImageView;
     private StringBuilder sb = new StringBuilder(  );
 
     private Button btnRecognizerDialog; //带窗口的语音识别
@@ -92,15 +89,6 @@ public class AccurateActivity extends AppCompatActivity {
         infoTextView = (TextView) findViewById(R.id.info_text_view);
         infoTextView.setTextIsSelectable( true );
         imageView = (ImageView) findViewById( R.id.image_view );
-//        mImageView = (RotationalTriangleImageView) findViewById( R.id.iv );
-//        mImageView.setOnClickListener( new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (mImageView.getParameter() == 0) {
-//                    mImageView.start();
-//                }
-//            }
-//        } );
 
         findViewById(R.id.gallery_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,44 +193,58 @@ public class AccurateActivity extends AppCompatActivity {
                                 switch (which){
                                     case R.id.xiaoyan:
                                         VOICE = "xiaoyan";
+                                        Toast.makeText( AccurateActivity.this,"已选择 小燕 女声 青年 中英文", Toast.LENGTH_SHORT ).show();
                                         break;
                                     case R.id.xiaoyu:
                                         VOICE = "xiaoyu";
+                                        Toast.makeText( AccurateActivity.this,"已选择 小宇 男声 青年 中英文", Toast.LENGTH_SHORT ).show();
                                         break;
                                     case R.id.henry:
                                         VOICE = "henry";
+                                        Toast.makeText( AccurateActivity.this,"已选择 亨利 男声 青年 英文", Toast.LENGTH_SHORT ).show();
                                         break;
                                     case R.id.vimary:
                                         VOICE = "vimary";
+                                        Toast.makeText( AccurateActivity.this,"已选择 玛丽 女声 青年 英文", Toast.LENGTH_SHORT ).show();
                                         break;
                                     case R.id.xiaomei:
                                         VOICE = "xiaomei";
+                                        Toast.makeText( AccurateActivity.this,"已选择 小梅 女声 青年 中英文粤语", Toast.LENGTH_SHORT ).show();
                                         break;
                                     case R.id.vixl:
                                         VOICE = "vixl";
+                                        Toast.makeText( AccurateActivity.this,"已选择 小莉 女声 青年 中英文台湾普通话", Toast.LENGTH_SHORT ).show();
                                         break;
                                     case R.id.xiaorong:
                                         VOICE = "xiaorong";
+                                        Toast.makeText( AccurateActivity.this,"已选择 小蓉 女声 青年 汉语四川话", Toast.LENGTH_SHORT ).show();
                                         break;
                                     case R.id.xiaokun:
                                         VOICE = "xiaokun";
+                                        Toast.makeText( AccurateActivity.this,"已选择 小芸 女声 青年 汉语东北话", Toast.LENGTH_SHORT ).show();
                                         break;
                                     case R.id.xiaoqiang:
                                         VOICE = "xiaoqiang";
+                                        Toast.makeText( AccurateActivity.this,"已选择 小强 男声 青年 汉语湖南话", Toast.LENGTH_SHORT ).show();
                                         break;
                                     case R.id.vixying:
                                         VOICE = "vixying";
+                                        Toast.makeText( AccurateActivity.this,"已选择 小莹 女声 青年 汉语陕西话", Toast.LENGTH_SHORT ).show();
                                         break;
                                     case R.id.nannan:
                                         VOICE = "nannan";
+                                        Toast.makeText( AccurateActivity.this,"已选择 楠楠 女声 童年 汉语普通话", Toast.LENGTH_SHORT ).show();
                                         break;
                                     case R.id.vils:
                                         VOICE = "vils";
+                                        Toast.makeText( AccurateActivity.this,"已选择 老孙 男声 老年 汉语普通话", Toast.LENGTH_SHORT ).show();
                                         break;
                                     case R.id.xiaoxin:
                                         VOICE = "xiaoxin";
+                                        Toast.makeText( AccurateActivity.this,"已选择 小新 男声 童年 汉语普通话", Toast.LENGTH_SHORT ).show();
                                         break;
                                     case R.id.cancel_chose:
+                                        Toast.makeText( AccurateActivity.this,"已取消声音切换", Toast.LENGTH_SHORT ).show();
                                         break;
 
                                 }
