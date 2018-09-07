@@ -3,4 +3,18 @@
     <string name="idCardLabel">身份证识别</string>
     <string name="bankCardLabel">银行卡识别</string>
     <string name="generalLabel">通用文字识别</string>
+    <string name="xiaoyan">小燕 女声 青年 中英文(默认)</string>
+    <string name="xiaoyu">小宇 男声 青年 中英文</string>
+    <string name="hengli">亨利 男声 青年 英文</string>
+    <string name="mali">玛丽 女声 青年 英文</string>
+    <string name="xiaomei">小梅 女声 青年 中英文 粤语</string>
+    <string name="xaioli">小莉 女声 青年 中英文 台湾普通话</string>
+    <string name="xiaorong">小蓉 女声 青年 汉语 四川话</string>
+    <string name="xiaokun">小坤 男声 青年 汉语 河南话</string>
+    <string name="xiaoqiang">小强 男声 青年 汉语 湖南话</string>
+    <string name="xiaoying">小莹 女声 青年 汉语 陕西话</string>
+    <string name="xiaoxin">小新 男声 童年 汉语 普通话</string>
+    <string name="nannan">楠楠 女声 童年 汉语 普通话</string>
+    <string name="laosun">老孙 男声 老年 汉语普通话</string>
+    <string name="cancel">取消</string>
 </resources>

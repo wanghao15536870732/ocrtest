@@ -2,44 +2,44 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/xiaoyan"
-        android:title="小燕 女声 青年 中英文(默认)" />
+        android:title="@string/xiaoyan" />
     <item
         android:id="@+id/xiaoyu"
-        android:title="小宇 男声 青年 中英文"/>
+        android:title="@string/xiaoyu"/>
     <item
         android:id="@+id/henry"
-        android:title="亨利 男声 青年 英文"/>
+        android:title="@string/hengli"/>
     <item
         android:id="@+id/vimary"
-        android:title="玛丽 女声 青年 英文"/>
+        android:title="@string/mali"/>
     <item
         android:id="@+id/xiaomei"
-        android:title="小梅 女声 青年 中英文 粤语" />
+        android:title="@string/xiaomei" />
     <item
         android:id="@+id/vixl"
-        android:title="小莉 女声 青年 中英文 台湾普通话"/>
+        android:title="@string/xaioli"/>
     <item
         android:id="@+id/xiaorong"
-        android:title="小蓉 女声 青年 汉语 四川话"/>
+        android:title="@string/xiaorong"/>
     <item
         android:id="@+id/xiaokun"
-        android:title="小坤 男声 青年 汉语 河南话"/>
+        android:title="@string/xiaokun"/>
     <item
         android:id="@+id/xiaoqiang"
-        android:title="小强 男声 青年 汉语 湖南话"/>
+        android:title="@string/xiaoqiang"/>
     <item
         android:id="@+id/vixying"
-        android:title="小莹 女声 青年 汉语 陕西话"/>
+        android:title="@string/xiaoying"/>
     <item
         android:id="@+id/xiaoxin"
-        android:title="小新 男声 童年 汉语 普通话"/>
+        android:title="@string/xiaoxin"/>
     <item
         android:id="@+id/nannan"
-        android:title="楠楠 女声 童年 汉语 普通话"/>
+        android:title="@string/nannan"/>
     <item
         android:id="@+id/vils"
-        android:title="老孙 男声 老年 汉语普通话"/>
+        android:title="@string/laosun"/>
     <item
         android:id="@+id/cancel_chose"
-        android:title="取消"/>
+        android:title="@string/cancel"/>
 </menu>

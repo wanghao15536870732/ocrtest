@@ -40,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private AlertDialog.Builder alertDialog;
 
     private Button generallyBtn,accurate_basic_Btn,handwritting_Btn,
-            general_enhance_Btn,idcard_Btn,bankcard_Btn, general_webimage_Btn,
-            vehicle_license_Btn,driving_license_Btn,license_plate_Btn,
-            business_license_Btn,receipt_Btn;
+            general_enhance_Btn,idcard_Btn,bankcard_Btn;
 
 
     @Override
@@ -71,12 +69,6 @@ public class MainActivity extends AppCompatActivity {
         general_enhance_Btn = (Button) findViewById( R.id.general_enhance_button );
         idcard_Btn = (Button) findViewById( R.id.idcard_button );
         bankcard_Btn = (Button) findViewById( R.id.bankcard_button );
-        general_webimage_Btn = (Button) findViewById( R.id.general_webimage_button );
-        vehicle_license_Btn = (Button) findViewById( R.id.vehicle_license_button );
-        driving_license_Btn = (Button) findViewById( R.id.driving_license_button );
-        license_plate_Btn = (Button) findViewById( R.id.license_plate_button );
-        business_license_Btn = (Button) findViewById( R.id.business_license_button );
-        receipt_Btn = (Button) findViewById( R.id.receipt_button );
     }
 
     private void initListener(){
@@ -148,104 +140,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 Intent intent = new Intent(MainActivity.this, BankCardActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        // 网络图片识别
-        general_webimage_Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!checkTokenStatus()) {
-                    return;
-                }
-                Intent intent = new Intent(MainActivity.this, CameraActivity.class);
-                intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
-                        FileUtil.getSaveFile(getApplication()).getAbsolutePath());
-                intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
-                        CameraActivity.CONTENT_TYPE_GENERAL);
-                startActivityForResult(intent, REQUEST_CODE_GENERAL_WEBIMAGE);
-            }
-        });
-
-
-
-        // 行驶证识别
-        vehicle_license_Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!checkTokenStatus()) {
-                    return;
-                }
-                Intent intent = new Intent(MainActivity.this, CameraActivity.class);
-                intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
-                        FileUtil.getSaveFile(getApplication()).getAbsolutePath());
-                intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
-                        CameraActivity.CONTENT_TYPE_GENERAL);
-                startActivityForResult(intent, REQUEST_CODE_VEHICLE_LICENSE);
-            }
-        });
-
-        // 驾驶证识别
-        driving_license_Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!checkTokenStatus()) {
-                    return;
-                }
-                Intent intent = new Intent(MainActivity.this, CameraActivity.class);
-                intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
-                        FileUtil.getSaveFile(getApplication()).getAbsolutePath());
-                intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
-                        CameraActivity.CONTENT_TYPE_GENERAL);
-                startActivityForResult(intent, REQUEST_CODE_DRIVING_LICENSE);
-            }
-        });
-
-        // 车牌识别
-        license_plate_Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!checkTokenStatus()) {
-                    return;
-                }
-                Intent intent = new Intent(MainActivity.this, CameraActivity.class);
-                intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
-                        FileUtil.getSaveFile(getApplication()).getAbsolutePath());
-                intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
-                        CameraActivity.CONTENT_TYPE_GENERAL);
-                startActivityForResult(intent, REQUEST_CODE_LICENSE_PLATE);
-            }
-        });
-
-        // 营业执照识别
-        business_license_Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!checkTokenStatus()) {
-                    return;
-                }
-                Intent intent = new Intent(MainActivity.this, CameraActivity.class);
-                intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
-                        FileUtil.getSaveFile(getApplication()).getAbsolutePath());
-                intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
-                        CameraActivity.CONTENT_TYPE_GENERAL);
-                startActivityForResult(intent, REQUEST_CODE_BUSINESS_LICENSE);
-            }
-        });
-
-        // 通用票据识别
-        receipt_Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!checkTokenStatus()) {
-                    return;
-                }
-                Intent intent = new Intent(MainActivity.this, CameraActivity.class);
-                intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
-                        FileUtil.getSaveFile(getApplication()).getAbsolutePath());
-                intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
-                        CameraActivity.CONTENT_TYPE_GENERAL);
-                startActivityForResult(intent, REQUEST_CODE_RECEIPT);
             }
         });
     }
