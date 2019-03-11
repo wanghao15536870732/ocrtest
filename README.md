@@ -8,7 +8,7 @@
 ![ocrtest_logo.png](https://upload-images.jianshu.io/upload_images/9140378-99d2976eb46f7698.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 <br />
-<a href="https://pan.baidu.com/s/1NjujKxaRl0Yc81WXOaeQnA?raw=true">点击下载</a>
+<a href="https://www.pgyer.com/9NY0">点击下载</a>
 <br />
 
 ---
